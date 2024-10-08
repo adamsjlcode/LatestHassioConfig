@@ -1,0 +1,141 @@
+
+- id: "1710543988869"
+  alias: Adjust Indoor Lighting Based on Cloud Coverage
+  description:
+    Dynamically adjusts the indoor light brightness based on cloud coverage
+    percentage during the day.
+  trigger:
+    - platform: state
+      entity_id: sensor.openweathermap_cloud_coverage
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: above_horizon
+  action:
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.home_light_brightness
+      data:
+        value:
+          "{% set baseline_brightness = 30 %} {% set max_adjustment = 100 %} {%
+          set cloud_coverage = states('sensor.openweathermap_cloud_coverage') | float(default=0)
+          %}\n{% if cloud_coverage is none %}\n  {% set cloud_coverage = 0 %}\n{% endif
+          %}\n{% set calculated_brightness = baseline_brightness + ((cloud_coverage
+          / 100) * (max_adjustment - baseline_brightness)) %} {% if calculated_brightness
+          > max_adjustment %}\n  {% set calculated_brightness = max_adjustment %}\n{%
+          elif calculated_brightness < 0 %}\n  {% set calculated_brightness = 0 %}\n{%
+          endif %}\n{{ calculated_brightness }}\n"
+  mode: single
+- id: "1710640274265"
+  alias: Upstairs AC Controllor
+  description: ""
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.bedroom_motion_sensor_temperature
+      above: 75
+      id: above_75
+    - platform: numeric_state
+      entity_id: sensor.bedroom_motion_sensor_temperature
+      below: 70
+      id: below_70
+    - platform: time_pattern
+      hours: /01
+  condition:
+    - condition: template
+      value_template: "{{ is_state('input_boolean.frigidaire_ac_button', 'off')
+        and is_state('input_boolean.lg_ac_button', 'off') }}"
+      enabled: false
+  action:
+    - choose:
+        - conditions:
+            - condition: or
+              conditions:
+                - condition: trigger
+                  id:
+                    - above_75
+                - condition: numeric_state
+                  entity_id: sensor.bedroom_motion_sensor_temperature_measurement
+                  above: 75
+          sequence:
+            - service: script.frigidaire_climate_control_upstairs_power_toggle
+              data: {}
+            - delay: 1
+            - service: script.lg_climate_control_upstairs_power_toggle
+              data: {}
+        - conditions:
+            - condition: or
+              conditions:
+                - condition: trigger
+                  id:
+                    - below_70
+                - condition: numeric_state
+                  entity_id: sensor.bedroom_motion_sensor_temperature_measurement
+                  below: 70
+          sequence:
+            - service: script.frigidaire_climate_control_upstairs_power_toggle
+              data: {}
+            - delay: 1
+            - service: script.lg_climate_control_upstairs_power_toggle
+              data: {}
+  mode: single
+
+- id: "1710979106892"
+  alias: LG webOS Smart TV - Turn On Action
+  description: ""
+  use_blueprint:
+    path: cvroque/webostv_turn_on.yaml
+    input:
+      webostv: 1503b5ade8481f97dd131da4a9772270
+      webostv_mac: E4:75:DC:9F:D6:D3
+      on_action:
+        - service: script.toggle
+          metadata: {}
+          data: {}
+      select_action: true
+      custom_action:
+        - service: script.lg_tv_upstairs_power_on
+          metadata: {}
+          data: {}
+
+- id: "1726203993067"
+  alias: Adjust No Motion Delay with Hue Dimmer
+  description:
+    Set no motion delay to 30 when button 1 is pressed, reset on button
+    4 or after 30 minutes.
+  trigger:
+    - device_id: 3f330cd2e69e8ee831d5c5f0ab4bc433
+      domain: hue
+      platform: device
+      type: short_release
+      subtype: 1
+      unique_id: b21ca135-d892-465c-91f0-934426a4a5c9
+    - device_id: 3f330cd2e69e8ee831d5c5f0ab4bc433
+      domain: hue
+      platform: device
+      type: short_release
+      subtype: 4
+      unique_id: some-unique-id-for-button-4
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: b21ca135-d892-465c-91f0-934426a4a5c9
+          sequence:
+            - data:
+                value: 30
+              target:
+                entity_id: input_number.bedroom_no_motion_delay
+              action: input_number.set_value
+            - wait_for_trigger:
+                - platform: event
+                  event_type: deconz_event
+                  event_data:
+                    id: 3f330cd2e69e8ee831d5c5f0ab4bc433
+                    event: 4002
+            - delay: 00:30:00
+            - data:
+                value: 0
+              target:
+                entity_id: input_number.bedroom_no_motion_delay
+              action: input_number.set_value
+  mode: single

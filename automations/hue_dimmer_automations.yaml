@@ -1,0 +1,333 @@
+# Hue Dimmer Switch Automations
+# Author: Justin Adams
+# Created on: 2023
+# Last Updated: 2024
+
+# -----------------------------------------------------
+# Switch: Bedroom All Lights Off (Long Press)
+#
+# Description:
+# This automation turns off all bedroom lights when the user long presses
+# the off button on the bedroom Hue dimmer switch.
+#
+# Triggers:
+# - Long press on the off button for the specified bedroom Hue dimmer switch.
+#
+# Actions:
+# - Turns off all bedroom lights with a smooth 5-second transition.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: "1699583739347"
+  alias: "Switch: Bedroom All Lights Off"
+  description: Long Press Off Button
+  trigger:
+    - device_id: 3f330cd2e69e8ee831d5c5f0ab4bc433
+      domain: hue
+      platform: device
+      type: long_press
+      subtype: 4
+      unique_id: 96d604ca-c2a4-4d4f-84f2-dbc6728ae2ae
+    - device_id: c0fe949098f7ff63239d22535cf3240a
+      domain: hue
+      platform: device
+      type: long_press
+      subtype: 4
+      unique_id: bce336b1-6bc2-4a46-bdd5-1c7bf7bbfd13
+  condition: []
+  action:
+    - service: light.turn_off
+      data:
+        transition: 5
+        target:
+        entity_id: light.all_lights
+  mode: single
+
+# -----------------------------------------------------
+# Switch: Bedroom All Lights On (Long Press)
+#
+# Description:
+# This automation turns on all bedroom lights to full brightness and a warm
+# color temperature when the user long presses the on button on the bedroom Hue
+# dimmer switch.
+#
+# Triggers:
+# - Long press on the on button for the specified bedroom Hue dimmer switch.
+#
+# Actions:
+# - Turns on all bedroom lights with a 60-second transition, setting brightness
+#   to 100% and color temperature to 228.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: "1699583900858"
+  alias: "Switch: Bedroom All Lights On"
+  description: Long Press On Button
+  trigger:
+    - device_id: 3f330cd2e69e8ee831d5c5f0ab4bc433
+      domain: hue
+      platform: device
+      type: long_press
+      subtype: 1
+      unique_id: b21ca135-d892-465c-91f0-934426a4a5c9
+  condition: []
+  action:
+    - service: light.turn_on
+      data:
+        transition: 60
+        color_temp: 228
+        brightness_pct: 100
+      target:
+        entity_id: light.all_lights
+  mode: single
+
+# -----------------------------------------------------
+# Switch: Bedroom Lights On (Short Press)
+#
+# Description:
+# This automation turns on the bedroom lights when the user short presses
+# the on button on the bedroom Hue dimmer switch.
+#
+# Triggers:
+# - Short press on the on button for the specified bedroom Hue dimmer switch.
+#
+# Actions:
+# - Turns on specified bedroom lights with a 5-second transition, setting brightness
+#   to 100% and color temperature to 234.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: "1699584786811"
+  alias: "Switch: Bedroom Lights On"
+  description: Short Press On Button
+  trigger:
+    - device_id: 3f330cd2e69e8ee831d5c5f0ab4bc433
+      domain: hue
+      platform: device
+      type: short_release
+      subtype: 1
+      unique_id: b21ca135-d892-465c-91f0-934426a4a5c9
+  condition: []
+  action:
+    - data:
+        transition: 5
+        color_temp: 234
+        brightness_pct: 100
+      target:
+        device_id:
+          - 3e85e140da7932a78fa8c0c855488192
+          - 0df99c2f064682cb887bdbc6004b11ff
+          - 4f72c3af81e2dbfec9b42c8daa27bff6
+          - e2863f42283465b7f5d3f51bdbf80ca2
+      action: light.turn_on
+  mode: single
+
+# -----------------------------------------------------
+# Switch: Bedroom Lights On (Short Press)
+#
+# Description:
+# This automation turns on the bedroom lights when the user short presses
+# the on button on the bedroom Hue dimmer switch.
+#
+# Triggers:
+# - Short press on the on button for the specified bedroom Hue dimmer switch.
+#
+# Actions:
+# - Turns on specified bedroom lights with a 5-second transition, setting brightness
+#   to 100% and color temperature to 234.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: "1699584786811"
+  alias: "Switch: Bedroom Lights On"
+  description: Short Press On Button
+  trigger:
+    - device_id: 3f330cd2e69e8ee831d5c5f0ab4bc433
+      domain: hue
+      platform: device
+      type: short_release
+      subtype: 1
+      unique_id: b21ca135-d892-465c-91f0-934426a4a5c9
+  condition: []
+  action:
+    - data:
+        transition: 5
+        color_temp: 234
+        brightness_pct: 100
+      target:
+        device_id:
+          - 3e85e140da7932a78fa8c0c855488192
+          - 0df99c2f064682cb887bdbc6004b11ff
+          - 4f72c3af81e2dbfec9b42c8daa27bff6
+          - e2863f42283465b7f5d3f51bdbf80ca2
+      action: light.turn_on
+  mode: single
+
+# -----------------------------------------------------
+# Switch: Bedroom Lights Off (Short Press)
+#
+# Description:
+# This automation turns off the bedroom lights when the user short presses
+# the off button on the bedroom Hue dimmer switch.
+#
+# Triggers:
+# - Short press on the off button for the specified bedroom Hue dimmer switch.
+#
+# Actions:
+# - Turns off specified bedroom lights with a smooth 5-second transition.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1699584906064"
+  alias: "Switch: Bedroom Lights Off"
+  description: Short Press Off Button
+  trigger:
+    - device_id: 3f330cd2e69e8ee831d5c5f0ab4bc433
+      domain: hue
+      platform: device
+      type: short_release
+      subtype: 4
+      unique_id: 96d604ca-c2a4-4d4f-84f2-dbc6728ae2ae
+  condition: []
+  action:
+    - data:
+        transition: 5
+      target:
+        device_id:
+          - 3e85e140da7932a78fa8c0c855488192
+          - 0df99c2f064682cb887bdbc6004b11ff
+          - 4f72c3af81e2dbfec9b42c8daa27bff6
+          - e2863f42283465b7f5d3f51bdbf80ca2
+      action: light.turn_off
+  mode: single
+
+# -----------------------------------------------------
+# Switch: Downstairs Lights Off (Short Press)
+#
+# Description:
+# This automation turns off the specified downstairs lights when the user short
+# presses the off button on the downstairs Hue dimmer switch.
+#
+# Triggers:
+# - Short press on the off button for the specified downstairs Hue dimmer switch.
+#
+# Actions:
+# - Turns off specified downstairs lights with a smooth 5-second transition.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1699590281953"
+  alias: "Switch: Downstairs Lights Off"
+  description: Short Press Off Button
+  trigger:
+    - device_id: c0fe949098f7ff63239d22535cf3240a
+      domain: hue
+      platform: device
+      type: short_release
+      subtype: 4
+      unique_id: bce336b1-6bc2-4a46-bdd5-1c7bf7bbfd13
+  condition: []
+  action:
+    - service: light.turn_off
+      data:
+        transition: 5
+      target:
+        device_id:
+          - ae9a7a6ecc1a78fb729248e254f52b32
+          - 2fbfe2a1a69c726b59f2876e08c597f9
+          - 04b3402eedc91e13a89c8d108bc7fd56
+          - 1e2569baf7100aa8803bea93d7c70707
+          - 4285466a8f1c5d3a42b2db310dff1f69
+          - 303d1584166e2c7c7de70d806228e855
+  mode: single
+
+# -----------------------------------------------------
+# Switch: Downstairs Lights On (Short Press)
+#
+# Description:
+# This automation turns on specified lights downstairs to full brightness with
+# a cool color temperature when the user short presses the on button on the downstairs
+# Hue dimmer switch.
+#
+# Triggers:
+# - Short press on the on button for the specified downstairs Hue dimmer switch.
+#
+# Actions:
+# - Turn on specified downstairs lights with a 15-second transition, setting brightness
+#   to 100% and color temperature to 412.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: "1699590566951"
+  alias: "Switch: Downstairs Lights On"
+  description: Short Press On Button
+  trigger:
+    - device_id: c0fe949098f7ff63239d22535cf3240a
+      domain: hue
+      platform: device
+      type: short_release
+      subtype: 1
+      unique_id: 28d403aa-6339-4a1e-a63f-7f0e98dbccf0
+  condition: []
+  action:
+    - service: light.turn_on
+      data:
+        color_temp: 412
+        brightness_pct: 100
+        transition: 15
+      target:
+        device_id:
+          - ae9a7a6ecc1a78fb729248e254f52b32
+          - 2fbfe2a1a69c726b59f2876e08c597f9
+          - 04b3402eedc91e13a89c8d108bc7fd56
+          - 4285466a8f1c5d3a42b2db310dff1f69
+          - 303d1584166e2c7c7de70d806228e855
+          - 1e2569baf7100aa8803bea93d7c70707
+  mode: single
+
+# -----------------------------------------------------
+# Toggle Sleep Sensor (Long Press)
+#
+# Description:
+# This automation toggles the input_boolean.someone_sleeping when the user
+# long presses the middle button (subtype 3) on the bedroom Hue dimmer switch.
+#
+# Triggers:
+# - Long press on the middle button (subtype 3) of the specified Hue dimmer switch.
+#
+# Actions:
+# - Toggles the input_boolean.someone_sleeping.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: "1727766777846"
+  alias: Toggle Sleep Sensor
+  description: Turns someone sleeping input boolean on and off
+  trigger:
+    - device_id: 3f330cd2e69e8ee831d5c5f0ab4bc433
+      domain: hue
+      platform: device
+      type: long_press
+      subtype: 3
+      unique_id: b6bc9eb5-6ddc-45d4-a74e-85261136851d
+  condition: []
+  action:
+    - action: input_boolean.toggle
+      target:
+        entity_id: input_boolean.someone_sleeping
+      data: {}
+  mode: single

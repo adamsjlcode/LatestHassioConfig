@@ -1,0 +1,24 @@
+enable_morning_routine:
+  name: Enable Morning Routine
+  icon: mdi:weather-sunset-up
+enable_afternoon_routine:
+  name: Enable Afternoon Routine
+  icon: mdi:sun-wireless
+enable_evening_routine:
+  name: Enable Evening Routine
+  icon: mdi:weather-night
+enable_night_routine:
+  name: Enable Night Routine
+  icon: mdi:moon-waning-crescent
+enable_color_mode:
+  name: Enable Color Mode
+  icon: mdi:palette
+someone_sleeping:
+  name: Someone Sleeping
+  icon: mdi:sleep
+sync_music_lights:
+  name: Sync Music Lights
+  icon: mdi:waveform
+regular_lights:
+  name: Regular Lights
+  icon: mdi:regex

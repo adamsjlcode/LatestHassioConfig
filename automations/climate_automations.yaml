@@ -1,0 +1,57 @@
+# -----------------------------------------------------
+# Frigidaire Power Toggle
+#
+# Description:
+# This automation triggers the power toggle script for the Frigidaire AC unit
+# when the input_boolean.frigidaire_ac_button is toggled.
+#
+# Triggers:
+# - A change in the input_boolean.frigidaire_ac_button state.
+#
+# Actions:
+# - Runs the Frigidaire climate control power toggle script.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1699732340926"
+  alias: Frigidare Power Toggle
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.frigidaire_ac_button
+  condition: []
+  action:
+    - service: script.frigidaire_climate_control_upstairs_power_toggle
+      data: {}
+  mode: single
+
+# -----------------------------------------------------
+# LG AC Power Toggle
+#
+# Description:
+# This automation triggers the power toggle script for the LG AC unit when the
+# input_boolean.lg_ac_button is toggled.
+#
+# Triggers:
+# - A change in the input_boolean.lg_ac_button state.
+#
+# Actions:
+# - Runs the LG climate control power toggle script.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1699732652226"
+  alias: LG AC Power Toggle
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.lg_ac_button
+  condition: []
+  action:
+    - service: script.lg_climate_control_upstairs_power_toggle
+      data: {}
+  mode: single

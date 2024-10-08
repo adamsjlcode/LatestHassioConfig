@@ -1,0 +1,633 @@
+# -----------------------------------------------------
+# Setup Evening Lights
+#
+# Description:
+# This automation adjusts the no-motion and motion delay timers for various
+# rooms when the time of day is set to "Evening".
+#
+# Triggers:
+# - The input_select.time_of_day changes to "Evening".
+#
+# Actions:
+# - Sets the no-motion and motion delay times for the bedroom, kitchen,
+#   downstairs, stairs, and media room to different values.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1711221914901"
+  alias: Setup Evening Lights
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - input_select.time_of_day
+      to: Evening
+  condition: []
+  action:
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 5
+      target:
+        entity_id: input_number.bedroom_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 10
+      target:
+        entity_id: input_number.kitchen_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.downstairs_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 2
+      target:
+        entity_id: input_number.stairs_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 10
+      target:
+        entity_id: input_number.media_room_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.bedroom_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.downstairs_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.kitchen_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.stairs_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.media_room_motion_delay
+  mode: single
+
+# -----------------------------------------------------
+# Setup Afternoon Lights
+#
+# Description:
+# This automation adjusts the no-motion and motion delay timers for various
+# rooms when the time of day is set to "Afternoon".
+#
+# Triggers:
+# - The input_select.time_of_day changes to "Afternoon".
+#
+# Actions:
+# - Sets the no-motion and motion delay times for the bedroom, kitchen,
+#   downstairs, stairs, and media room to different values.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1711221871324"
+  alias: Setup Afternoon Lights
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - input_select.time_of_day
+      to: Afternoon
+  condition: []
+  action:
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 5
+      target:
+        entity_id: input_number.bedroom_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.bedroom_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.downstairs_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 15
+      target:
+        entity_id: input_number.downstairs_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.kitchen_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 15
+      target:
+        entity_id: input_number.kitchen_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 5
+      target:
+        entity_id: input_number.stairs_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.stairs_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 30
+      target:
+        entity_id: input_number.media_room_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.media_room_no_motion_delay
+  mode: single
+
+# Setup Morning Lights
+#
+# Description:
+# This automation adjusts the no-motion and motion delay timers for various
+# rooms when the time of day is set to "Morning".
+#
+# Triggers:
+# - The input_select.time_of_day changes to "Morning".
+#
+# Actions:
+# - Sets the no-motion and motion delay times for the bedroom, kitchen,
+#   downstairs, stairs, and media room to different values.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1711155740786"
+  alias: "Setup Morning Lights"
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - input_select.time_of_day
+      to: Morning
+  condition: []
+  action:
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 15
+      target:
+        entity_id: input_number.bedroom_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 30
+      target:
+        entity_id: input_number.downstairs_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 15
+      target:
+        entity_id: input_number.kitchen_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.stairs_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 10
+      target:
+        entity_id: input_number.media_room_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 30
+      target:
+        entity_id: input_number.bedroom_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.downstairs_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.kitchen_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.stairs_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.media_room_motion_delay
+  mode: single
+
+# Setup Late Night Lights
+#
+# Description:
+# This automation adjusts the no-motion and motion delay timers for various
+# rooms when the time of day is set to "Late Night".
+#
+# Triggers:
+# - The input_select.time_of_day changes to "Late Night".
+#
+# Actions:
+# - Sets the no-motion and motion delay times for the bedroom, kitchen,
+#   downstairs, stairs, and media room to different values.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1711155393194"
+  alias: Setup Late Night Lights
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - input_select.time_of_day
+      to: Late Night
+  condition: []
+  action:
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.bedroom_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.downstairs_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 10
+      target:
+        entity_id: input_number.kitchen_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.media_room_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.stairs_no_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 30
+      target:
+        entity_id: input_number.bedroom_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.downstairs_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.kitchen_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.stairs_motion_delay
+    - service: input_number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: input_number.media_room_motion_delay
+  mode: single
+
+# -----------------------------------------------------
+# Update Time of Day
+#
+# Description:
+# This automation automatically updates the 'time_of_day' input select based on
+# the current time and predefined start times for morning, afternoon, evening,
+# and late night.
+#
+# Triggers:
+# - Time triggers based on the start times for each time of day or at midnight.
+#
+# Actions:
+# - Updates the 'time_of_day' input select based on the current time and the
+#   specified start times.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: "1710642496243"
+  alias: Update Time of Day
+  description:
+    Automatically updates the 'time_of_day' input select based on the current
+    time and predefined start times.
+  trigger:
+    - platform: time
+      at: 00:00:01
+    - platform: time
+      at: input_datetime.morning_start
+    - platform: time
+      at: input_datetime.afternoon_start
+    - platform: time
+      at: input_datetime.evening_start
+    - platform: time
+      at: input_datetime.late_night_start
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template:
+                "{{ now().time() >= strptime(states('input_datetime.morning_start'),
+                '%H:%M:%S').time() and now().time() < strptime(states('input_datetime.afternoon_start'),
+                '%H:%M:%S').time() }}"
+          sequence:
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.time_of_day
+                option: Morning
+        - conditions:
+            - condition: template
+              value_template:
+                "{{ now().time() >= strptime(states('input_datetime.afternoon_start'),
+                '%H:%M:%S').time() and now().time() < strptime(states('input_datetime.evening_start'),
+                '%H:%M:%S').time() }}"
+          sequence:
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.time_of_day
+                option: Afternoon
+        - conditions:
+            - condition: template
+              value_template:
+                "{{ now().time() >= strptime(states('input_datetime.evening_start'),
+                '%H:%M:%S').time() and now().time() < strptime(states('input_datetime.late_night_start'),
+                '%H:%M:%S').time() }}"
+          sequence:
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.time_of_day
+                option: Evening
+        - conditions:
+            - condition: template
+              value_template:
+                "{{ now().time() >= strptime(states('input_datetime.late_night_start'),
+                '%H:%M:%S').time() or now().time() < strptime(states('input_datetime.morning_start'),
+                '%H:%M:%S').time() }}"
+          sequence:
+            - service: input_select.select_option
+              data:
+                entity_id: input_select.time_of_day
+                option: Late Night
+  mode: single
+
+# -----------------------------------------------------
+# Play Clock Sound on the Half-Hour
+#
+# Description:
+# This automation plays a clock sound every half-hour when the sun is up.
+#
+# Triggers:
+# - The time pattern reaches the 30-minute mark on any hour.
+#
+# Actions:
+# - Plays a clock sound on the home media player.
+#
+# Conditions:
+# - Only runs when the sun is above the horizon.
+# -----------------------------------------------------
+
+- id: "1707603165027"
+  alias: Play Clock Sound on the Half-Hour
+  description: Plays a clock sound every half-hour when the sun is up
+  trigger:
+    - platform: time_pattern
+      minutes: "30"
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: above_horizon
+  action:
+    - service: media_player.play_media
+      target:
+        entity_id: media_player.home
+      data:
+        media_content_id: media-source://media_source/local/antique-wood-chime-bell-ring.wav
+        media_content_type: music
+
+# -----------------------------------------------------
+# Play Clock Sound on the Hour
+#
+# Description:
+# This automation plays a clock sound every hour when the sun is up and
+# frog sounds are not playing.
+#
+# Triggers:
+# - The time pattern reaches the top of the hour (00 minutes).
+#
+# Actions:
+# - Plays a clock sound on the home media player.
+#
+# Conditions:
+# - Only runs when the sun is above the horizon and frog sounds are not enabled.
+# -----------------------------------------------------
+
+- id: "1709497089270"
+  alias: Play Clock Sound on the Hour
+  description:
+    Plays a clock sound every hour when the sun is up and not playing frog
+    sounds
+  trigger:
+    - platform: time_pattern
+      minutes: "0"
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: above_horizon
+    - condition: state
+      entity_id: input_boolean.frog_sounds_today
+      state: "off"
+  action:
+    - service: media_player.play_media
+      target:
+        entity_id: media_player.home
+      data:
+        media_content_id: media-source://media_source/local/antique-wood-chime-bell-ring.wav
+        media_content_type: music
+  mode: single
+
+# -----------------------------------------------------
+# Random Frog Chime During Daylight Hours
+#
+# Description:
+# This automation plays a random frog call every hour during daylight hours on
+# randomly selected days.
+#
+# Triggers:
+# - Time pattern triggers every hour.
+#
+# Actions:
+# - Randomly selects and plays a frog sound on the bedroom and kitchen speakers.
+#
+# Conditions:
+# - Only runs during daylight hours when frog sounds are enabled for the day.
+# -----------------------------------------------------
+
+- id: "1709228035694"
+  alias: Random Frog Chime During Daylight Hours
+  description:
+    Plays a random frog call every hour during daylight hours on randomly
+    selected days.
+  trigger:
+    - platform: time_pattern
+      hours: "01"
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: above_horizon
+    - condition: state
+      entity_id: input_boolean.frog_sounds_today
+      state: "on"
+      enabled: true
+  action:
+    - variables:
+        chosen_frog:
+          "{{ ['https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/barking-treefrog-chorus.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/bird-voiced-treefrog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/bronze-frog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/carpenter-frog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2020/11/southern-gray-treefrog-mating-call.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2020/11/southern-gray-treefrog-rain-call.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/narrow-mouthed-toad.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/florida-gopher-frog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/green-treefrog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/green-treefrog-chorus.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/green-treefrog-rain-call.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/little-grass-frog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/little-grass-frog-rhythmic.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/oak-toad-breeding-call.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/ornate-chorus-frog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/pig-frog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/pinewoods-treefrog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/pinewoods-treefrog-chorus.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/florida-chorus-frog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/southern-cricket-frog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/southern-cricket-frog-chorus.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/southern-leopard-frog-chorus.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/southern-toad-breeding-chorus.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/spring-peeper.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2020/11/spring-peeper-chorus-mating-call.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/squirrel-treefrog.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/squirrel-treefrog-chorus.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/group-chorus-spring.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/group-chorus-summer-july.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/group-chorus-summer-august.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2018/11/group-chorus-winter.mp3',
+          'https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/108/2020/10/Cuban-treefrog-calls_03.mp3'
+          ][(range(0, 32) | random)] }}
+
+          "
+    - service: media_player.volume_set
+      data:
+        volume_level: 1
+      target:
+        entity_id: media_player.bedroom_speaker
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.bedroom_speaker
+        media_content_id: "{{ chosen_frog }}"
+        media_content_type: music
+    - service: media_player.volume_set
+      data:
+        volume_level: 1
+      target:
+        entity_id: media_player.kitchen_speaker
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.kitchen_speaker
+        media_content_id: "{{ chosen_frog }}"
+        media_content_type: music
+  mode: single
+
+# -----------------------------------------------------
+# Determine Daily Frog Sound Playback
+#
+# Description:
+# This automation runs just after midnight each day to randomly determine
+# whether frog sounds will play for that day.
+#
+# Triggers:
+# - Runs daily at 00:01 AM.
+#
+# Actions:
+# - Executes a script to randomly decide if frog sounds will play that day.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1709326067269"
+  alias: Determine Daily Frog Sound Playback
+  description:
+    This automation will run the script just after midnight each day to
+    randomly determine if the frog sounds should play that day.
+  trigger:
+    - platform: time
+      at: 00:01:00
+  action:
+    - service: script.1709327333198
+      data: {}

@@ -1,0 +1,73 @@
+- name: Regular Lighting
+  entities:
+    input_boolean.regular_lights:
+      state: "on"
+    input_boolean.theme_mode:
+      state: "off"
+    input_boolean.sync_music_lights:
+      state: "off"
+    input_boolean.color_mode:
+      state: "off"
+    light.media_room_overhead_light:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+    light.bedroom_overhead_light:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.floorlamp:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.bed_light_strip_1:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.laundry_room_overhead_1:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.stairs_light_strip:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.kitchen_overhead_1:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.living_room_light:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.dining_room_light:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.kitchen_overhead_2:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.laundry_room_overhead_2:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.bed_light_strip_2:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255
+
+    light.stairs_overhead_light:
+      state: "on"
+      xy_color: [0.522, 0.413]
+      brightness: 255

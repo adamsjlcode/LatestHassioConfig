@@ -1,0 +1,800 @@
+# -----------------------------------------------------
+# Turn Off Lights on No Motion
+# Description:
+# This automation turns off lights in various areas of the home when no motion
+# is detected for a specified amount of time, with different delays for each
+# room. The delays for each room are controlled by the input_number entities.
+#
+# Triggers:
+# - The automation is triggered when no motion is detected in the bedroom, kitchen,
+#   stairs, media room, or when the front or back door contact sensors report "off"
+#   (closed) for a specific period of time, defined by the respective input_number
+#   entities for each room.
+#
+# Actions:
+# - Turns off the lights in the corresponding rooms when no motion is detected,
+#   according to the triggered sensor.
+#
+# Conditions:
+# - The automation only runs if both input_boolean.sync_music_lights and
+#   input_boolean.theme_mode are off.
+#
+# Dependencies:
+# - Input_number entities control the delay for turning off the lights in each room.
+# - Lights in each area are turned off according to the trigger sensor (motion or door contact).
+# -----------------------------------------------------
+
+- id: "1710545712946"
+  alias: Turn Off Lights on No Motion
+  description:
+    Turns off lights in various areas when no motion is detected, with
+    room-specific delays.
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bedroom_motion_sensor
+      to: "off"
+      for:
+        00:{{ '%02d' | format(states('input_number.bedroom_no_motion_delay') | int)
+        }}:00
+      id: bedroom_no_motion
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion_sensor
+      to: "off"
+      for:
+        00:{{ '%02d' | format(states('input_number.kitchen_no_motion_delay') | int)
+        }}:00
+      id: kitchen_no_motion
+    - platform: state
+      entity_id: binary_sensor.stair_motion_sensor
+      to: "off"
+      for:
+        00:{{ '%02d' | format(states('input_number.stairs_no_motion_delay') | int)
+        }}:00
+      id: stairs_no_motion
+    - platform: state
+      entity_id: binary_sensor.media_room_motion_sensor
+      to: "off"
+      for:
+        00:{{ '%02d' | format(states('input_number.media_room_no_motion_delay') |
+        int) }}:00
+      id: media_room_no_motion
+    - platform: state
+      entity_id: binary_sensor.front_door_contact
+      to: "off"
+      for:
+        00:{{ '%02d' | format(states('input_number.downstairs_no_motion_delay') |
+        int) }}:00
+      id: front_door_closed
+    - platform: state
+      entity_id: binary_sensor.back_door_contact
+      to: "off"
+      for:
+        00:{{ '%02d' | format(states('input_number.downstairs_no_motion_delay') |
+        int) }}:00
+      id: back_door_closed
+  condition:
+    - condition: state
+      entity_id: input_boolean.sync_music_lights
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.theme_mode
+      state: "off"
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: bedroom_no_motion
+          sequence:
+            - service: light.turn_off
+              entity_id:
+                - light.bedroom_overhead_light
+                - light.bed_light_strip_1
+                - light.bed_light_strip_2
+                - light.floorlamp
+                - light.media_room_overhead_light
+        - conditions:
+            - condition: trigger
+              id: kitchen_no_motion
+          sequence:
+            - service: light.turn_off
+              entity_id:
+                - light.kitchen_overhead_1
+                - light.kitchen_overhead_2
+                - light.laundry_room_overhead_1
+                - light.laundry_room_overhead_2
+        - conditions:
+            - condition: trigger
+              id: stairs_no_motion
+          sequence:
+            - service: light.turn_off
+              entity_id:
+                - light.stairs_light_strip
+                - light.stairs_overhead_light
+        - conditions:
+            - condition: trigger
+              id: media_room_no_motion
+          sequence:
+            - service: light.turn_off
+              entity_id:
+                - light.media_room_overhead_light
+        - conditions:
+            - condition: trigger
+              id: front_door_closed
+          sequence:
+            - service: light.turn_off
+              entity_id:
+                - light.living_room_light
+                - light.dining_room_light
+        - conditions:
+            - condition: trigger
+              id: back_door_closed
+          sequence:
+            - service: light.turn_off
+              entity_id:
+                - light.kitchen_overhead_1
+                - light.kitchen_overhead_2
+                - light.laundry_room_overhead_1
+                - light.laundry_room_overhead_2
+  mode: parallel
+  max: 10
+# -----------------------------------------------------
+# Turn On Lights on Motion
+#
+# Description:
+# This automation turns on lights in various areas when motion is detected, 
+# with room-specific delays. The brightness and color of the lights are 
+# controlled by the current lighting mode (normal or color mode).
+#
+# Triggers:
+# - Motion detected by sensors in the bedroom, kitchen, stairs, media room, 
+#   or at the front and back doors.
+#
+# Actions:
+# - Turns on lights in the corresponding room with brightness and color based 
+#   on the lighting mode and current settings.
+#
+# Conditions:
+# - Only triggers if both input_boolean.sync_music_lights and input_boolean.theme_mode 
+#   are off.
+# -----------------------------------------------------
+- id: "1710639809027"
+  alias: Turn On Lights on Motion
+  description:
+    Turns on lights in various areas when no motion is detected, with room-specific
+    delays.
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bedroom_motion_sensor
+      to: "on"
+      for:
+        00:00:{{ '%02d' | format(states('input_number.bedroom_motion_delay') | int)
+        }}
+      id: bedroom_motion
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion_sensor
+      to: "on"
+      for:
+        00:00:{{ '%02d' | format(states('input_number.kitchen_motion_delay') | int)
+        }}
+      id: kitchen_motion
+    - platform: state
+      entity_id: binary_sensor.media_room_motion_sensor
+      to: "on"
+      for:
+        00:00:{{ '%02d' | format(states('input_number.media_room_motion_delay') |
+        int) }}
+      id: media_room_motion
+    - platform: state
+      entity_id: binary_sensor.stair_motion_sensor
+      to: "on"
+      for:
+        00:00:{{ '%02d' | format(states('input_number.stairs_motion_delay') | int)
+        }}
+      id: stairs_motion
+    - platform: state
+      entity_id: binary_sensor.front_door_contact
+      to: "on"
+      for:
+        00:00:{{ '%02d' | format(states('input_number.downstairs_motion_delay')|
+        int) }}
+      id: front_door_opened
+    - platform: state
+      entity_id: binary_sensor.back_door_contact
+      to: "on"
+      for:
+        00:00:{{ '%02d' | format(states('input_number.downstairs_motion_delay')|
+        int) }}
+      id: back_door_opened
+  condition:
+    - condition: state
+      entity_id: input_boolean.sync_music_lights
+      state: "off"
+    - condition: state
+      entity_id: input_boolean.theme_mode
+      state: "off"
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: kitchen_motion
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      state: "on"
+                      entity_id: input_boolean.enable_color_mode
+                  sequence:
+                    - service: light.turn_on
+                      entity_id:
+                        - light.kitchen_overhead_1
+                        - light.kitchen_overhead_2
+                        - light.laundry_room_overhead_1
+                        - light.laundry_room_overhead_2
+                      data:
+                        brightness_pct: "{{ light_brightness }}"
+                        color_name: "{{ light_color }}"
+              default:
+                - service: light.turn_on
+                  entity_id:
+                    - light.kitchen_overhead_1
+                    - light.kitchen_overhead_2
+                    - light.laundry_room_overhead_1
+                    - light.laundry_room_overhead_2
+                  data:
+                    brightness_pct: "{{ light_brightness }}"
+                    kelvin: "{{ light_kelvin }}"
+        - conditions:
+            - condition: trigger
+              id: stairs_motion
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      state: "on"
+                      entity_id: input_boolean.enable_color_mode
+                  sequence:
+                    - service: light.turn_ON
+                      entity_id:
+                        - light.stairs_overhead_light
+                        - light.stairs_light_strip
+                      data:
+                        brightness_pct: "{{ light_brightness }}"
+                        color_name: "{{ light_color }}"
+              default:
+                - service: light.turn_ON
+                  entity_id:
+                    - light.stairs_overhead_light
+                    - light.stairs_light_strip
+                  data:
+                    brightness_pct: "{{ light_brightness }}"
+                    kelvin: "{{ light_kelvin }}"
+        - conditions:
+            - condition: trigger
+              id: bedroom_motion
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_boolean.someone_sleeping
+                      state: "on"
+                  sequence:
+                    - choose:
+                        - conditions:
+                            - condition: state
+                              state: "on"
+                              entity_id: input_boolean.enable_color_mode
+                          sequence:
+                            - service: light.turn_on
+                              entity_id:
+                                - light.bed_light_strip_1
+                                - light.bed_light_strip_2
+                              data:
+                                color_name: "{{ light_color }}"
+                                brightness_pct: 10
+                      default:
+                        - service: light.turn_on
+                          entity_id:
+                            - light.bed_light_strip_1
+                            - light.bed_light_strip_2
+                          data:
+                            kelvin: "{{ light_kelvin }}"
+                            brightness_pct: 10
+                - conditions:
+                    - condition: and
+                      conditions:
+                        - condition: state
+                          state: "on"
+                          entity_id: input_boolean.enable_color_mode
+                        - condition: state
+                          entity_id: input_boolean.someone_sleeping
+                          state: "off"
+                  sequence:
+                    - service: light.turn_on
+                      entity_id:
+                        - light.floorlamp
+                        - light.bedroom_overhead_light
+                        - light.bed_light_strip_1
+                        - light.bed_light_strip_2
+                      data:
+                        color_name: "{{ light_color }}"
+                        brightness_pct: 10
+              default:
+                - service: light.turn_on
+                  entity_id:
+                    - light.floorlamp
+                    - light.bedroom_overhead_light
+                    - light.bed_light_strip_1
+                    - light.bed_light_strip_2
+                  data:
+                    brightness_pct: "{{ light_brightness }}"
+                    kelvin: "{{ light_kelvin }}"
+        - conditions:
+            - condition: trigger
+              id: media_room_motion
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      state: "on"
+                      entity_id: input_boolean.enable_color_mode
+                  sequence:
+                    - service: light.turn_ON
+                      entity_id:
+                        - light.media_room_overhead_light
+                      data:
+                        brightness_pct: "{{ light_brightness }}"
+                        color_name: "{{ light_color }}"
+              default:
+                - service: light.turn_ON
+                  entity_id:
+                    - light.media_room_overhead_light
+                  data:
+                    brightness_pct: "{{ light_brightness }}"
+                    kelvin: "{{ light_kelvin }}"
+        - conditions:
+            - condition: trigger
+              id: front_door_opened
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      state: "on"
+                      entity_id: input_boolean.enable_color_mode
+                  sequence:
+                    - service: light.turn_on
+                      entity_id:
+                        - light.living_room_light
+                        - light.dining_room_light
+                      data:
+                        brightness_pct: "{{ light_brightness }}"
+                        color_name: "{{ light_color }}"
+              default:
+                - service: light.turn_on
+                  entity_id:
+                    - light.living_room_light
+                    - light.dining_room_light
+                  data:
+                    brightness_pct: "{{ light_brightness }}"
+                    kelvin: "{{ light_kelvin }}"
+        - conditions:
+            - condition: trigger
+              id: back_door_opened
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      state: "on"
+                      entity_id: input_boolean.enable_color_mode
+                  sequence:
+                    - service: light.turn_ON
+                      entity_id:
+                        - light.kitchen_overhead_1
+                        - light.kitchen_overhead_2
+                        - light.laundry_room_overhead_1
+                        - light.laundry_room_overhead_2
+                      data:
+                        brightness_pct: "{{ light_brightness }}"
+                        color_name: "{{ light_color }}"
+              default:
+                - service: light.turn_ON
+                  entity_id:
+                    - light.kitchen_overhead_1
+                    - light.kitchen_overhead_2
+                    - light.laundry_room_overhead_1
+                    - light.laundry_room_overhead_2
+                  data:
+                    brightness_pct: "{{ light_brightness }}"
+                    kelvin: "{{ light_kelvin }}"
+  variables:
+    light_brightness: "{{ states('input_number.home_light_brightness') | int }}"
+    light_color: "{{ states('input_select.light_color') }}"
+    light_kelvin: "{{ states('input_select.light_kelvin') }}"
+  mode: single
+# -----------------------------------------------------
+# Adjust Brightness of On Lights Except Screens
+#
+# Description:
+# This automation adjusts the brightness of all lights that are currently on,
+# except for screen-related lights, whenever the input_number for brightness
+# changes. The input_number.home_light_brightness is used to set the brightness
+# percentage of the selected lights.
+#
+# Triggers:
+# - The automation is triggered when the value of input_number.home_light_brightness
+#   changes.
+#
+# Actions:
+# - Adjust the brightness of all on lights (except those related to screens)
+#   to match the input_number value.
+#
+# Conditions:
+# - None (runs anytime the brightness input number changes).
+#
+# Dependencies:
+# - Requires the input_number.home_light_brightness entity to adjust the brightness.
+# - Works with any lights whose entity IDs do not include "_screen".
+# -----------------------------------------------------
+
+- alias: Adjust Brightness of On Lights Except Screens
+  description:
+    Adjusts the brightness of lights that are currently on (except screen
+    lights) when input_number for brightness changes
+  trigger:
+    - platform: state
+      entity_id: input_number.home_light_brightness
+  action:
+    - service: light.turn_on
+      data:
+        brightness_pct: "{{ states('input_number.home_light_brightness') | int }}"
+      target:
+        entity_id:
+          "{% set ns = namespace(lights=[]) %} {% for light in states.light
+          %}\n  {% if light.state == 'on' and '_screen' not in light.entity_id %}\n
+          \   {% set ns.lights = ns.lights + [ light.entity_id ] %}\n  {% endif %}\n{%
+          endfor %} {{ ns.lights }}\n"
+  mode: parallel
+  id: 1cdcc41b990443baad193c766e929fa4
+
+# -----------------------------------------------------
+# Set Light to Selected Color
+#
+# Description:
+# This automation sets all lights to the color selected in the input_select.light_color
+# dropdown. It also disables normal lighting and sync music lighting, and enables
+# color mode.
+#
+# Triggers:
+# - A change in the selected color from the input_select.light_color dropdown.
+#
+# Actions:
+# - Turns off the normal lights and sync music lighting input booleans.
+# - Enables color mode.
+# - Sets all lights to the color selected in input_select.light_color.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: cc5b7c3fd79a4d5ea054d706af05c445
+  alias: Set Light to Selected Color
+  trigger:
+    - platform: state
+      entity_id: input_select.light_color
+  action:
+    - service: input_boolean.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.normal_lights
+          - input_boolean.sync_music_lights
+          - input_boolean.theme_mode
+    - service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.enable_color_mode
+      data: {}
+    - service: light.turn_on
+      target:
+        entity_id: light.all_lights
+      data:
+        color_name: "{{ states('input_select.light_color') }}"
+  mode: parallel
+
+# -----------------------------------------------------
+# Outdoor Night Light
+#
+# Description:
+# This automation toggles the outdoor light when the back door is opened after
+# sunset. The light stays on for 15 minutes before turning off again.
+#
+# Triggers:
+# - The back door contact sensor changes from "off" to "on" (opened).
+#
+# Actions:
+# - Toggles the outdoor light when the back door is opened.
+# - Delays for 15 minutes.
+# - Toggles the outdoor light off after the delay.
+#
+# Conditions:
+# - Only runs after sunset.
+# -----------------------------------------------------
+
+- id: "1721875125353"
+  alias: Outdoor Night Light
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.back_door_contact
+      from: "off"
+      to: "on"
+  condition:
+    - condition: sun
+      after: sunset
+  action:
+    - service: switch.toggle
+      data: {}
+      target:
+        device_id: 985b699e0a29cb7a1bcc100865344644
+    - delay:
+        hours: 0
+        minutes: 15
+        seconds: 0
+        milliseconds: 0
+    - service: switch.toggle
+      metadata: {}
+      data: {}
+      target:
+        device_id: 985b699e0a29cb7a1bcc100865344644
+  mode: single
+
+# -----------------------------------------------------
+# Normal Light On
+#
+# Description:
+# This automation turns off the color mode, sync music lights, and theme mode
+# when the normal lights input boolean is switched on.
+#
+# Triggers:
+# - The input_boolean.normal_lights changes from "off" to "on".
+#
+# Actions:
+# - Turns off color mode, sync music lights, and theme mode input booleans.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1711417104881"
+  alias: Normal Light On
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.normal_lights
+      to: "on"
+      from: "off"
+  condition: []
+  action:
+    - service: input_boolean.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.enable_color_mode
+          - input_boolean.sync_music_lights
+          - input_boolean.theme_mode
+  mode: single
+
+# -----------------------------------------------------
+# Theme is off
+#
+# Description:
+# This automation turns on the normal lights input boolean when the theme mode
+# is turned off.
+#
+# Triggers:
+# - The input_boolean.theme_mode changes from "on" to "off".
+#
+# Actions:
+# - Turns on the normal lights input boolean.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1710456822979"
+  alias: Theme is off
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.theme_mode
+      from: "on"
+      to: "off"
+  condition: []
+  action:
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.normal_lights
+  mode: single
+# -----------------------------------------------------
+# Set Lights to Selected Temperature
+#
+# Description:
+# This automation sets all lights to the color temperature selected in the
+# input_select.light_kelvin dropdown. It also disables color mode, theme mode,
+# and sync music lights, and enables normal lights mode.
+#
+# Triggers:
+# - A change in the selected temperature from the input_select.light_kelvin dropdown.
+#
+# Actions:
+# - Turns off color mode, theme mode, and sync music lights.
+# - Enables normal lights mode.
+# - Sets all lights to the selected color temperature.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: "1711150276270"
+  alias: Set Lights to Selected Temperature
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - input_select.light_kelvin
+  condition: []
+  action:
+    - service: input_boolean.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.enable_color_mode
+          - input_boolean.theme_mode
+          - input_boolean.sync_music_lights
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.normal_lights
+    - service: light.turn_on
+      target:
+        entity_id: light.all_lights
+      data:
+        kelvin: "{{ light_kelvin }}"
+  variables:
+    light_kelvin: "{{ states('input_select.light_kelvin') }}"
+  mode: parallel
+
+# -----------------------------------------------------
+# Sync Sengled with Hue - Dynamic Palette
+#
+# Description:
+# This automation mimics the Hue dynamic scenes on Sengled lights by matching
+# brightness and RGB color attributes of various Hue lights with the Sengled lights.
+#
+# Triggers:
+# - A change in the dynamics attribute of the Hue lights.
+#
+# Actions:
+# - Synchronizes the brightness and RGB color of the Sengled lights with
+#   corresponding Hue lights.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1710103968772"
+  alias: Sync Sengled with Hue - Dynamic Palette
+  description: Mimic Hue dynamic scene on Sengled lights
+  trigger:
+    - platform: template
+      value_template: "{{ state_attr('light.home', 'dynamics') }}"
+      enabled: true
+  action:
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.bed_light_strip_1
+          - light.laundry_room_overhead_1
+        brightness: "{{ state_attr('light.media_room_overhead_light', 'brightness')}}"
+        rgb_color:
+          "{{ state_attr('light.media_room_overhead_light', 'rgb_color')
+          }}"
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.stairs_light_strip
+          - light.kitchen_overhead_1
+          - light.living_room_light
+        brightness: "{{ state_attr('light.stairs_overhead_light', 'brightness')
+          }}"
+        rgb_color: "{{ state_attr('light.stairs_overhead_light', 'rgb_color') }}"
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.kitchen_overhead_2
+          - light.laundry_room_overhead_2
+        brightness: "{{ state_attr('light.bedroom_overhead_light', 'brightness')
+          }}"
+        rgb_color: "{{ state_attr('light.bedroom_overhead_light', 'rgb_color') }}"
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.dining_room_light
+          - light.bed_light_strip_2
+        brightness: "{{ state_attr('light.floorlamp', 'brightness') }}"
+        rgb_color: "{{ state_attr('light.floorlamp', 'rgb_color') }}"
+  mode: single
+  max: 10
+# -----------------------------------------------------
+# Persistent Theme Lights
+#
+# Description:
+# This automation turns on theme mode when dynamic scenes from the Hue group 
+# are enabled.
+#
+# Triggers:
+# - The binary_sensor.hue_groups_dynamic_scening changes from "off" to "on".
+#
+# Actions:
+# - Turns on theme mode by setting input_boolean.theme_mode to "on".
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: "1710456631644"
+  alias: Persistent Theme Lights
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.hue_groups_dynamic_scening
+      from: "off"
+      to: "on"
+  condition: []
+  action:
+    - service: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: input_boolean.theme_mode
+  mode: single
+
+# Theme Is Running
+#
+# Description:
+# This automation turns off normal lights, color mode, and sync music lights 
+# when theme mode is activated.
+#
+# Triggers:
+# - The input_boolean.theme_mode changes to "on".
+#
+# Actions:
+# - Turns off normal lights, color mode, and sync music lights.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+
+- id: "1710456739075"
+  alias: Theme Is Running
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.theme_mode
+      from:
+      to: "on"
+  condition: []
+  action:
+    - service: input_boolean.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.normal_lights
+          - input_boolean.enable_color_mode
+          - input_boolean.sync_music_lights
+  mode: single

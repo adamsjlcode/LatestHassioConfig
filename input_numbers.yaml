@@ -1,0 +1,60 @@
+bedroom_no_motion_delay:
+    name: Bedroom No Motion Delay
+    icon: mdi:timer-sand
+    min: 0
+    max: 60
+    step: 1
+kitchen_no_motion_delay:
+  name: Kitchen No Motion Delay
+  icon: mdi:timer-sand
+  min: 0
+  max: 60
+  step: 1
+stairs_no_motion_delay:
+  name: Stairs No Motion Delay
+  icon: mdi:stairs
+  min: 0
+  max: 60
+  step: 1
+media_room_no_motion_delay:
+  name: Media Room No Motion Delay
+  icon: mdi:filmstrip-box-multiple
+  min: 0
+  max: 60
+  step: 1
+downstairs_no_motion_delay:
+  name: Downstairs No Motion Delay
+  icon: mdi:timer-sand
+  min: 0
+  max: 60
+  step: 1
+bedroom_motion_delay:
+  name: Bedroom Motion Delay
+  icon: mdi:bed
+  min: 0
+  max: 30
+  step: 1
+kitchen_motion_delay:
+  name: Kitchen Motion Delay
+  icon: mdi:food-fork-drink
+  min: 0
+  max: 30
+  step: 1
+stairs_motion_delay:
+  name: Stairs Motion Delay
+  icon: mdi:stairs
+  min: 0
+  max: 30
+  step: 1
+media_room_motion_delay:
+  name: Media Room Motion Delay
+  icon: mdi:filmstrip-box-multiple
+  min: 0
+  max: 30
+  step: 1
+downstairs_motion_delay:
+  name: Downstairs Motion Delay
+  icon: mdi:sofa
+  min: 0
+  max: 30
+  step: 1

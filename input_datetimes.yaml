@@ -1,0 +1,23 @@
+morning_start:
+  name: Morning Start Time
+  has_date: false
+  has_time: true
+  initial: "06:00:00" # 6:00 AM
+
+afternoon_start:
+  name: Afternoon Start Time
+  has_date: false
+  has_time: true
+  initial: "12:00:00" # 12:00 PM
+
+evening_start:
+  name: Evening Start Time
+  has_date: false
+  has_time: true
+  initial: "18:00:00" # 6:00 PM
+
+late_night_start:
+  name: Late Night Start Time
+  has_date: false
+  has_time: true
+  initial: "23:00:00" # 11:00 PM

@@ -1,0 +1,202 @@
+light_kelvin:
+  name: Light Kelvin
+  options:
+    - "2000"
+    - "2700"
+    - "3000"
+    - "4000"
+    - "5000"
+    - "6000"
+    - "7000"
+  icon: mdi:temperature-kelvin
+light_color:
+  name: Light Color
+  options:
+    - Red
+    - Green
+    - Blue
+    - Yellow
+    - Orange
+    - Purple
+    - Pink
+    - White
+    - Warm White
+    - Cool White
+    - Cyan
+    - Magenta
+    - Lime
+    - Indigo
+    - Violet
+    - Gold
+    - Peach
+    - Teal
+    - Lavender
+    - Maroon
+    - Navy
+    - Olive
+    - Chocolate
+    - Coral
+    - Crimson
+    - Dark Blue
+    - Dark Cyan
+    - Dark Gray
+    - Dark Green
+    - Dark Magenta
+    - Dark Orange
+    - Dark Red
+    - Deep Pink
+    - Deep Sky Blue
+    - Dodger Blue
+    - Firebrick
+    - Forest Green
+    - Fuchsia
+    - Gold
+    - Goldenrod
+    - Gray
+    - Green Yellow
+    - Hot Pink
+    - Indian Red
+    - Ivory
+    - Khaki
+    - Lavender Blush
+    - Lemon Chiffon
+    - Light Blue
+    - Light Coral
+    - Light Cyan
+    - Light Goldenrod Yellow
+    - Light Gray
+    - Light Green
+    - Light Pink
+    - Light Salmon
+    - Light Sea Green
+    - Light Sky Blue
+    - Light Slate Gray
+    - Light Steel Blue
+    - Light Yellow
+    - Lime Green
+    - Linen
+    - Medium Aquamarine
+    - Medium Blue
+    - Medium Orchid
+    - Medium Purple
+    - Medium Sea Green
+    - Medium Slate Blue
+    - Medium Spring Green
+    - Medium Turquoise
+    - Medium Violet Red
+    - Midnight Blue
+    - Mint Cream
+    - Misty Rose
+    - Moccasin
+    - Navajo White
+    - Old Lace
+    - Olive Drab
+    - Orange Red
+    - Orchid
+    - Pale Goldenrod
+    - Pale Green
+    - Pale Turquoise
+    - Pale Violet Red
+    - Papaya Whip
+    - Peach Puff
+    - Peru
+    - Plum
+    - Powder Blue
+    - Rosy Brown
+    - Royal Blue
+    - Saddle Brown
+    - Salmon
+    - Sandy Brown
+    - Sea Green
+    - Sea Shell
+    - Sienna
+    - Silver
+    - Sky Blue
+    - Slate Blue
+    - Slate Gray
+    - Snow
+    - Spring Green
+    - Steel Blue
+    - Tan
+    - Thistle
+    - Tomato
+    - Turquoise
+    - Violet
+    - Wheat
+    - White Smoke
+    - Yellow Green
+    - Azure
+    - Alice Blue
+    - Ghost White
+    - Honeydew
+    - Cornsilk
+    - Lemon Chiffon
+    - Floral White
+    - Gainsboro
+    - Beige
+    - Bisque
+    - Blanched Almond
+    - Blue Violet
+    - Burlywood
+    - Cadet Blue
+    - Chartreuse
+    - Dark Olive Green
+    - Dark Sea Green
+    - Dark Slate Blue
+    - Dark Slate Gray
+    - Dark Turquoise
+    - Dim Gray
+    - Green Sea
+    - Light Blue Gray
+    - Medium Sea Blue
+    - Medium Violet Red
+    - Misty Rose
+    - Moss Green
+    - Mountbatten Pink
+    - Neon Carrot
+    - Pale Chestnut
+    - Pastel Blue
+    - Pastel Brown
+    - Pastel Gray
+    - Pastel Green
+    - Pastel Magenta
+    - Pastel Orange
+    - Pastel Pink
+    - Pastel Purple
+    - Pastel Red
+    - Pastel Violet
+    - Pastel Yellow
+    - Rich Black
+    - Robin Egg Blue
+    - Salmon Pink
+    - Sandy Taupe
+    - Sapphire Blue
+    - School Bus Yellow
+    - Screamin' Green
+    - Sea Blue
+    - Sky Magenta
+    - Smokey Topaz
+    - Spiro Disco Ball
+    - Sunset Orange
+    - Tiffany Blue
+    - Timberwolf
+    - Tropical Rain Forest
+    - True Blue
+    - Tufts Blue
+    - UCLA Blue
+    - UFO Green
+    - Ultra Pink
+    - Ultramarine Blue
+    - Vegas Gold
+    - Venetian Red
+    - Verdigris
+    - Violet-Blue
+    - Vivid Tangerine
+    - Wild Blue Yonder
+    - Wild Strawberry
+    - Wild Watermelon
+    - Wisteria
+    - Xanadu
+    - Yale Blue
+    - Zaffre
+  icon: mdi:palette

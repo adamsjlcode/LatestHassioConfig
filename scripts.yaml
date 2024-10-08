@@ -1,0 +1,1102 @@
+db_remove_orphaned_entities:
+  sequence:
+    - action: homeassistant.list_orphaned_database_entities
+      response_variable: orphaned
+    - action: recorder.purge_entities
+      target:
+        entity_id: "{{ orphaned.entities }}"
+      data:
+        keep_days: 0
+  alias: "[HA DB] Purge Orphaned Entities from Database"
+  description: Purge Orphaned Entities from Database
+  icon: mdi:delete-sweep
+  mode: single
+open_weather_channel_command:
+  sequence:
+    - action: webostv.command
+      target:
+        entity_id: media_player.lg_webos_smart_tv
+      data:
+        command: system.launcher/open
+        payload:
+          target: !secret adp_url
+lg_climate_control_upstairs_power_toggle:
+  alias: LG Climate Control Power Toggle - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: PowerToggle
+  icon: mdi:power
+  mode: single
+lg_climate_control_upstairs_c_f_toggle:
+  alias: LG Climate Control C-F Toggle - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: C-F
+  icon: mdi:temperature-celsius
+  mode: single
+lg_climate_control_upstairs_cool:
+  alias: LG Climate Control Cool - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: Cool
+  icon: mdi:snowflake
+  mode: single
+lg_climate_control_upstairs_dry:
+  alias: LG Climate Control Dry - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: Dry
+  icon: mdi:water-percent
+  mode: single
+lg_climate_control_upstairs_fan_high:
+  alias: LG Climate Control Fan High - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: FanHigh
+  icon: mdi:fan-speed-3
+  mode: single
+lg_climate_control_upstairs_fan_low:
+  alias: LG Climate Control Fan Low - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: FanLow
+  icon: mdi:fan-speed-1
+  mode: single
+lg_climate_control_upstairs_fan_mode:
+  alias: LG Climate Control Fan Mode - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: FanMode
+  icon: mdi:fan-auto
+  mode: single
+lg_climate_control_upstairs_sleep:
+  alias: LG Climate Control Sleep - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: Sleep
+  icon: mdi:sleep
+  mode: single
+lg_climate_control_upstairs_swing:
+  alias: LG Climate Control Swing - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: Swing
+  icon: mdi:sync
+  mode: single
+lg_climate_control_upstairs_temp_cooler:
+  alias: LG Climate Control Temperature Cooler - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: TempCooler
+  icon: mdi:thermometer-minus
+  mode: single
+lg_climate_control_upstairs_temp_hotter:
+  alias: LG Climate Control Temperature Hotter - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: TempHotter
+  icon: mdi:thermometer-plus
+  mode: single
+lg_climate_control_upstairs_timer:
+  alias: LG Climate Control Timer - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 79704932
+        command: Timer
+  icon: mdi:timer-sand
+  mode: single
+frigidaire_climate_control_upstairs_power_toggle:
+  alias: Frigidaire Climate Control Power Toggle - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: PowerToggle
+  icon: mdi:power-standby
+  mode: single
+frigidaire_climate_control_upstairs_ac_mode:
+  alias: Frigidaire Climate Control AC Mode - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: AcMode
+  icon: mdi:air-conditioner
+  mode: single
+frigidaire_climate_control_upstairs_auto_cool:
+  alias: Frigidaire Climate Control Auto Cool - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: AutoCool
+  icon: mdi:autorenew
+  mode: single
+frigidaire_climate_control_upstairs_energy_saver:
+  alias: Frigidaire Climate Control Energy Saver - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: EnergySaver
+  icon: mdi:battery-heart
+  mode: single
+frigidaire_climate_control_upstairs_fan_mode:
+  alias: Frigidaire Climate Control Fan Mode - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: FanMode
+  icon: mdi:fan
+  mode: single
+frigidaire_climate_control_upstairs_fan_speed_down:
+  alias: Frigidaire Climate Control Fan Speed Down - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: FanSpeedDown
+  icon: mdi:fan-speed-1
+  mode: single
+frigidaire_climate_control_upstairs_fan_speed_up:
+  alias: Frigidaire Climate Control Fan Speed Up - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: FanSpeedUp
+  icon: mdi:fan-speed-3
+  mode: single
+frigidaire_climate_control_upstairs_sleep:
+  alias: Frigidaire Climate Control Sleep - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: Sleep
+  icon: mdi:sleep
+  mode: single
+frigidaire_climate_control_upstairs_temp_cooler:
+  alias: Frigidaire Climate Control Temperature Cooler - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: TempCooler
+  icon: mdi:thermometer-minus
+  mode: single
+frigidaire_climate_control_upstairs_temp_hotter:
+  alias: Frigidaire Climate Control Temperature Hotter - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: TempHotter
+  icon: mdi:thermometer-plus
+  mode: single
+frigidaire_climate_control_upstairs_timer:
+  alias: Frigidaire Climate Control Timer - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80336653
+        command: Timer
+  icon: mdi:timer-outline
+  mode: single
+lg_tv_upstairs_power_on:
+  alias: LG TV Power On - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: PowerOn
+  icon: mdi:power
+  mode: single
+lg_tv_upstairs_power_off:
+  alias: LG TV Power Off - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: PowerOff
+  icon: mdi:power-standby
+  mode: single
+lg_tv_upstairs_power_toggle:
+  alias: LG TV Power Toggle - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: PowerToggle
+  icon: mdi:television
+  mode: single
+lg_tv_upstairs_numeric_keypad_0:
+  alias: LG TV Numeric Keypad 0 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: "0"
+  icon: mdi:numeric-0-circle-outline
+  mode: single
+lg_tv_upstairs_numeric_keypad_1:
+  alias: LG TV Numeric Keypad 1 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: "1"
+  icon: mdi:numeric-1-circle-outline
+  mode: single
+lg_tv_upstairs_numeric_keypad_2:
+  alias: LG TV Numeric Keypad 2 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: "2"
+  icon: mdi:numeric-2-circle-outline
+  mode: single
+lg_tv_upstairs_numeric_keypad_3:
+  alias: LG TV Numeric Keypad 3 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: "3"
+  icon: mdi:numeric-3-circle-outline
+  mode: single
+lg_tv_upstairs_numeric_keypad_4:
+  alias: LG TV Numeric Keypad 4 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: "4"
+  icon: mdi:numeric-4-circle-outline
+  mode: single
+lg_tv_upstairs_numeric_keypad_5:
+  alias: LG TV Numeric Keypad 5 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: "5"
+  icon: mdi:numeric-5-circle-outline
+  mode: single
+lg_tv_upstairs_numeric_keypad_6:
+  alias: LG TV Numeric Keypad 6 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: "6"
+  icon: mdi:numeric-6-circle-outline
+  mode: single
+lg_tv_upstairs_numeric_keypad_7:
+  alias: LG TV Numeric Keypad 7 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: "7"
+  icon: mdi:numeric-7-circle-outline
+  mode: single
+lg_tv_upstairs_numeric_keypad_8:
+  alias: LG TV Numeric Keypad 8 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: "8"
+  icon: mdi:numeric-8-circle-outline
+  mode: single
+lg_tv_upstairs_numeric_keypad_9:
+  alias: LG TV Numeric Keypad 9 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: "9"
+  icon: mdi:numeric-9-circle-outline
+  mode: single
+lg_tv_upstairs_direction_up:
+  alias: LG TV Direction Up - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: DirectionUp
+  icon: mdi:arrow-up
+  mode: single
+lg_tv_upstairs_direction_down:
+  alias: LG TV Direction Down - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: DirectionDown
+  icon: mdi:arrow-down
+  mode: single
+lg_tv_upstairs_direction_left:
+  alias: LG TV Direction Left - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: DirectionLeft
+  icon: mdi:arrow-left
+  mode: single
+lg_tv_upstairs_direction_right:
+  alias: LG TV Direction Right - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: DirectionRight
+  icon: mdi:arrow-right
+  mode: single
+lg_tv_upstairs_play:
+  alias: LG TV Play - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Play
+  icon: mdi:play
+  mode: single
+lg_tv_upstairs_pause:
+  alias: LG TV Pause - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Pause
+  icon: mdi:pause
+  mode: single
+lg_tv_upstairs_stop:
+  alias: LG TV Stop - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Stop
+  icon: mdi:stop
+  mode: single
+lg_tv_upstairs_rewind:
+  alias: LG TV Rewind - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Rewind
+  icon: mdi:rewind
+  mode: single
+lg_tv_upstairs_fast_forward:
+  alias: LG TV Fast Forward - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: FastForward
+  icon: mdi:fast-forward
+  mode: single
+lg_tv_upstairs_menu:
+  alias: LG TV Menu - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Menu
+  icon: mdi:menu
+  mode: single
+lg_tv_upstairs_info:
+  alias: LG TV Info - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Info
+  icon: mdi:information-outline
+  mode: single
+lg_tv_upstairs_exit:
+  alias: LG TV Exit - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Exit
+  icon: mdi:exit-to-app
+  mode: single
+lg_tv_upstairs_volume_up:
+  alias: LG TV Volume Up - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: VolumeUp
+  icon: mdi:volume-plus
+  mode: single
+lg_tv_upstairs_volume_down:
+  alias: LG TV Volume Down - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: VolumeDown
+  icon: mdi:volume-minus
+  mode: single
+lg_tv_upstairs_mute:
+  alias: LG TV Mute - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Mute
+  icon: mdi:volume-mute
+  mode: single
+lg_tv_upstairs_channel_up:
+  alias: LG TV Channel Up - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: ChannelUp
+  icon: mdi:chevron-up-box
+  mode: single
+lg_tv_upstairs_channel_down:
+  alias: LG TV Channel Down - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: ChannelDown
+  icon: mdi:chevron-down-box
+  mode: single
+lg_tv_upstairs_channel_prev:
+  alias: LG TV Channel Previous - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: ChannelPrev
+  icon: mdi:history
+  mode: single
+lg_tv_upstairs_input_next:
+  alias: LG TV Input Next - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: InputNext
+  icon: mdi:input
+  mode: single
+lg_tv_upstairs_input_hdmi1:
+  alias: LG TV Input HDMI1 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: InputHdmi1
+  icon: mdi:video-input-hdmi
+  mode: single
+lg_tv_upstairs_input_hdmi2:
+  alias: LG TV Input HDMI2 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: InputHdmi2
+  icon: mdi:video-input-hdmi
+  mode: single
+lg_tv_upstairs_input_hdmi3:
+  alias: LG TV Input HDMI3 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: InputHdmi3
+  icon: mdi:video-input-hdmi
+  mode: single
+lg_tv_upstairs_input_av1:
+  alias: LG TV Input AV1 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: InputAv1
+  icon: mdi:video-input-component
+  mode: single
+lg_tv_upstairs_input_av2:
+  alias: LG TV Input AV2 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: InputAv2
+  icon: mdi:video-input-component
+  mode: single
+lg_tv_upstairs_input_component1:
+  alias: LG TV Input Component1 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: InputComponent1
+  icon: mdi:video-input-component
+  mode: single
+lg_tv_upstairs_input_component2:
+  alias: LG TV Input Component2 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: InputComponent2
+  icon: mdi:video-input-component
+  mode: single
+lg_tv_upstairs_select:
+  alias: LG TV Select - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Select
+  icon: mdi:cursor-default-click-outline
+  mode: single
+lg_tv_upstairs_return:
+  alias: LG TV Return - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Return
+  icon: mdi:return
+  mode: single
+lg_tv_upstairs_favorite:
+  alias: LG TV Favorite - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Favorite
+  icon: mdi:star-outline
+  mode: single
+lg_tv_upstairs_list:
+  alias: LG TV List - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: List
+  icon: mdi:format-list-bulleted
+  mode: single
+lg_tv_upstairs_sleep:
+  alias: LG TV Sleep - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Sleep
+  icon: mdi:sleep
+  mode: single
+lg_tv_upstairs_green_button:
+  alias: LG TV Green Button - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Green
+  icon: mdi:circle-medium
+  mode: single
+lg_tv_upstairs_red_button:
+  alias: LG TV Red Button - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Red
+  icon: mdi:circle-medium
+  mode: single
+lg_tv_upstairs_blue_button:
+  alias: LG TV Blue Button - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Blue
+  icon: mdi:circle-medium
+  mode: single
+lg_tv_upstairs_yellow_button:
+  alias: LG TV Yellow Button - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Yellow
+  icon: mdi:circle-medium
+  mode: single
+lg_tv_upstairs_page_down:
+  alias: LG TV Page Down - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: PageDown
+  icon: mdi:page-next-outline
+  mode: single
+lg_tv_upstairs_page_up:
+  alias: LG TV Page Up - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: PageUp
+  icon: mdi:page-previous-outline
+  mode: single
+lg_tv_upstairs_aspect_ratio:
+  alias: LG TV Aspect Ratio - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Aspect
+  icon: mdi:aspect-ratio
+  mode: single
+lg_tv_upstairs_av_mode:
+  alias: LG TV AV Mode - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: AvMode
+  icon: mdi:television-classic
+  mode: single
+lg_tv_upstairs_energy_saving:
+  alias: LG TV Energy Saving - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: EnergySaving
+  icon: mdi:power-sleep
+  mode: single
+lg_tv_upstairs_freeze:
+  alias: LG TV Freeze - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Freeze
+  icon: mdi:snowflake
+  mode: single
+lg_tv_upstairs_input_rgb_pc:
+  alias: LG TV Input RGB-PC - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: InputRgb-Pc
+  icon: mdi:monitor
+  mode: single
+lg_tv_upstairs_input_tv:
+  alias: LG TV Input TV - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: InputTv
+  icon: mdi:television
+  mode: single
+lg_tv_upstairs_q_menu:
+  alias: LG TV Q.Menu - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Q.Menu
+  icon: mdi:menu
+  mode: single
+lg_tv_upstairs_ratio_16_9:
+  alias: LG TV Ratio 16:9 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Ratio16:9
+  icon: mdi:aspect-ratio
+  mode: single
+lg_tv_upstairs_ratio_4_3:
+  alias: LG TV Ratio 4:3 - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: Ratio4:3
+  icon: mdi:aspect-ratio
+  mode: single
+lg_tv_upstairs_ratio_zoom:
+  alias: LG TV Ratio Zoom - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: RatioZoom
+  icon: mdi:magnify
+  mode: single
+lg_tv_upstairs_simp_link:
+  alias: LG TV SimpLink - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: SimpLink
+  icon: mdi:link-variant
+  mode: single
+lg_tv_upstairs_tv_video:
+  alias: LG TV TV Video - Upstairs
+  sequence:
+    - service: remote.send_command
+      target:
+        entity_id: remote.upstairs
+      data:
+        device: 80344500
+        command: TvVideo
+  icon: mdi:video
+  mode: single
+"1709327333198":
+  alias: Set Frog Sound Playback for the Day
+  sequence:
+    service:
+      input_boolean.turn_{{ 'on' if (range(1, 8) | random) == now().isoweekday()
+      else 'off' }}
+    data: {}
+    entity_id: input_boolean.frog_sounds_today
+"1710040466415":
+  alias: Aurora Borealis V1
+  sequence:
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.lg_webos_smart_tv
+        media_content_id: https://www.youtube.com/watch?v=D5g11Op_Svg
+        media_content_type: audio/mp3
+    - service: light.turn_on
+      target:
+        entity_id:
+          - light.media_room_overhead_light
+
+          - light.bedroom_overhead_light
+      data:
+        rgb_color:
+          - 255
+          - 255
+          - 255
+        brightness: 50
+        transition: 5
+    - repeat:
+        count: 10
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.media_room_overhead_light
+
+                - light.bedroom_overhead_light
+                - light.floorlamp
+                - light.bed_light_strip_1
+                - light.laundry_room_overhead_1
+                - light.stairs_light_strip
+                - light.kitchen_overhead_1
+                - light.living_room_light
+                - light.dining_room_light
+                - light.bedroom_overhead_light_3
+                - light.kitchen_overhead_2
+                - light.laundry_room_overhead_2
+
+                - light.bed_light_strip_2
+
+                - light.stairs_overhead_light
+
+            data:
+              rgb_color:
+                "{{ ['18, 97, 160', '5, 161, 105', '87, 3, 168'] | random
+                }}"
+              brightness: "{{ range(200, 255) | random }}"
+              transition: "{{ range(2, 4) | random }}"
+          - delay:
+              seconds: 3
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.media_room_overhead_light
+
+                - light.bedroom_overhead_light
+                - light.floorlamp
+                - light.bed_light_strip_1
+                - light.laundry_room_overhead_1
+                - light.stairs_light_strip
+                - light.kitchen_overhead_1
+                - light.living_room_light
+                - light.dining_room_light
+                - light.bedroom_overhead_light_3
+                - light.kitchen_overhead_2
+                - light.laundry_room_overhead_2
+
+                - light.bed_light_strip_2
+
+                - light.stairs_overhead_light
+
+            data:
+              rgb_color:
+                "{{ ['0, 128, 128', '128, 0, 128', '255, 99, 71'] | random
+                }}"
+              brightness: "{{ range(200, 255) | random }}"
+              transition: "{{ range(2, 4) | random }}"
+          - delay:
+              seconds: 3
+    - service: light.turn_on
+      target:
+        entity_id:
+          - light.media_room_overhead_light
+
+          - light.bedroom_overhead_light
+          - light.floorlamp
+          - light.bedroom_floorlamp
+          - light.bed_light_strip_1
+          - light.laundry_room_overhead_1
+          - light.stairs_light_strip
+          - light.kitchen_overhead_1
+          - light.living_room_light
+          - light.dining_room_light
+          - light.bedroom_overhead_light_3
+          - light.kitchen_overhead_2
+          - light.laundry_room_overhead_2
+
+          - light.bed_light_strip_2
+
+          - light.stairs_overhead_light
+
+      data:
+        rgb_color:
+          - 135
+          - 206
+          - 235
+        brightness: 100
+        transition: 5
+    - delay:
+        seconds: 5
+    - service: light.turn_off
+      target:
+        entity_id:
+          - light.media_room_overhead_light
+
+          - light.bedroom_overhead_light
+          - light.floorlamp
+          - light.bedroom_floorlamp
+          - light.bed_light_strip_1
+          - light.laundry_room_overhead_1
+          - light.stairs_light_strip
+          - light.kitchen_overhead_1
+          - light.living_room_light
+          - light.dining_room_light
+          - light.bedroom_overhead_light_3
+          - light.kitchen_overhead_2
+          - light.laundry_room_overhead_2
+
+          - light.bed_light_strip_2
+
+          - light.stairs_overhead_light
+
+      data: {}
+  mode: single

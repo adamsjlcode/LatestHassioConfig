@@ -1,0 +1,134 @@
+# -----------------------------------------------------
+# Door Open TTS Alert
+#
+# Description:
+# This automation sends a TTS alert through selected speakers when the front
+# or back door is opened, indicating which door was triggered.
+#
+# Triggers:
+# - The back door or front door contact sensor changes to "on" (opened).
+#
+# Actions:
+# - Sets the volume level of the selected media players (kitchen and bedroom speakers).
+# - Sends a TTS alert to both speakers, specifying whether the front or back door
+#   was opened.
+#
+# Conditions:
+# - None.
+# -----------------------------------------------------
+- id: "1710795370401"
+  alias: Door Open TTS Alert
+  description:
+    Sends a TTS alert through selected speakers when the front or back
+    door is opened, indicating which door was triggered.
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.back_door_contact
+      id: back_door
+      from:
+      to: "on"
+    - platform: state
+      entity_id:
+        - binary_sensor.front_door_contact
+      id: front_door
+      from:
+      to: "on"
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: back_door
+          sequence:
+            - service: media_player.volume_set
+              data:
+                volume_level: 0.8
+              target:
+                entity_id:
+                  - media_player.kitchen_speaker
+                  - media_player.bedroom_speaker
+            - service: tts.cloud_say
+              data:
+                message: Back door opened.
+                entity_id: media_player.kitchen_speaker
+            - service: tts.cloud_say
+              data:
+                message: Back door opened.
+                entity_id: media_player.bedroom_speaker
+        - conditions:
+            - condition: trigger
+              id: front_door
+          sequence:
+            - service: media_player.volume_set
+              data:
+                volume_level: 0.8
+              target:
+                entity_id:
+                  - media_player.kitchen_speaker
+                  - media_player.bedroom_speaker
+            - service: tts.cloud_say
+              data:
+                entity_id: media_player.kitchen_speaker
+                message: Front door opened.
+            - service: tts.cloud_say
+              data:
+                message: Front Door opened.
+                entity_id: media_player.bedroom_speaker
+# - id: "1711088810646"
+#   alias: Door Open TTS Alert Latest
+#   description:
+#     Sends a TTS alert through selected speakers when the front or back
+#     door is opened, indicating which door was triggered.
+#   trigger:
+#     - platform: state
+#       entity_id:
+#         - binary_sensor.back_door_contact
+#       id: back_door
+#       from:
+#       to: "on"
+#     - platform: state
+#       entity_id:
+#         - binary_sensor.front_door_contact
+#       id: front_door
+#       from:
+#       to: "on"
+#   action:
+#     - choose:
+#         - conditions:
+#             - condition: trigger
+#               id: back_door
+#           sequence:
+#             - service: script.turn_on
+#               target:
+#                 entity_id: script.google_home_resume
+#               data:
+#                 variables:
+#                   action:
+#                     - service: tts.cloud_say
+#                       target:
+#                         entity_id:
+#                           - media_player.kitchen_speaker
+#                           - media_player.bedroom_speaker
+#                       data:
+#                         message: Back door opened.
+#                       extra:
+#                         volume: 0.8
+#         - conditions:
+#             - condition: trigger
+#               id: front_door
+#           sequence:
+#             - service: script.turn_on
+#               target:
+#                 entity_id: script.google_home_resume
+#               data:
+#                 variables:
+#                   action:
+#                     - service: tts.cloud_say
+#                       target:
+#                         entity_id:
+#                           - media_player.kitchen_speaker
+#                           - media_player.bedroom_speaker
+#                       data:
+#                         message: Front door opened.
+#                       extra:
+#                         volume: 0.8
